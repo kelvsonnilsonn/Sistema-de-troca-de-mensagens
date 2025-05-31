@@ -11,6 +11,8 @@ import com.orizon.system.message.repositories.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
+
 @Service
 public class MessageServiceImpl implements MessageService {
 
@@ -52,11 +54,12 @@ public class MessageServiceImpl implements MessageService {
     public String receive(Long messageId) {
         Message message = checkIfMessageExists(messageId);
 
-        if(message.getReceiver() != AccountConfigurations.currentUser){
+        if(!Objects.equals(message.getReceiver().getId(), AccountConfigurations.currentUser.getId())){
             throw new InvalidMessageReceiverException();
         }
 
         message.setRead(true);
+        messageDAO.save(message);
         return message.getContent();
     }
 
