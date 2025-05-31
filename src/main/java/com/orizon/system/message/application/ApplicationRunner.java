@@ -99,11 +99,11 @@ public class ApplicationRunner {
 
     private void sendMessage() {
         System.out.println("\n=== ENVIAR MENSAGEM ===");
+        System.out.print("Conteúdo: ");
+        String content = scan.nextLine();
         System.out.print("ID do destinatário: ");
         Long receiverId = scan.nextLong();
         User receiverUser = userService.findById(receiverId);
-        System.out.print("Conteúdo: ");
-        String content = scan.nextLine();
 
         messageService.send(receiverUser, content);
         System.out.println("Mensagem enviada com sucesso!");
