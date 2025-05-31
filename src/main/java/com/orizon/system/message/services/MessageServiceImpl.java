@@ -46,7 +46,7 @@ public class MessageServiceImpl implements MessageService {
      *
      * @param messageId Refere-se à mensagem a ser lida.
      *
-     * @throws InvalidIdentifierException() Se o 'id' não for encontrado (Lançado pelo método checkIfMessageExists).
+     * @throws InvalidIdentifierException Se o 'id' não for encontrado (Lançado pelo método checkIfMessageExists).
      * @throws InvalidMessageReceiverException Lançado caso o usuário atual não seja o recebedor da mensagem.
      * */
 
@@ -68,7 +68,7 @@ public class MessageServiceImpl implements MessageService {
      *
      * @param messageId Refere-se ao 'id' da mensagem a ser removida.
      *
-     * @throws InvalidIdentifierException() Se o 'id' não for encontrado (Lançado pelo método checkIfMessageExists).
+     * @throws InvalidIdentifierException Se o 'id' não for encontrado (Lançado pelo método checkIfMessageExists).
      * */
 
     @Override
@@ -83,7 +83,7 @@ public class MessageServiceImpl implements MessageService {
      * @param messageId Refere-se ao 'id' mensagem a ser atualizada.
      * @param newContent Refere-se ao novo conteúdo a ser colocado na mensagem.
      *
-     * @throws InvalidIdentifierException() Se o 'id' não for encontrado (Lançado pelo método checkIfMessageExists).
+     * @throws InvalidIdentifierException Se o 'id' não for encontrado (Lançado pelo método checkIfMessageExists).
      * */
     @Override
     public void update(Long messageId, String newContent) {

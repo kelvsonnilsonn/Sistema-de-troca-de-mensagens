@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService {
      *
      * @param userId Refere-se ao 'id' da mensagem a ser removida.
      *
-     * @throws InvalidIdentifierException() Se o 'id' não for encontrado (Lançado pelo método checkIfUserExists).
+     * @throws InvalidIdentifierException Se o 'id' não for encontrado (Lançado pelo método checkIfUserExists).
      * */
 
     @Override
