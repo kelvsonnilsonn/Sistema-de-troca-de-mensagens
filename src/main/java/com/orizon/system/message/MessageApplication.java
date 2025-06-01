@@ -1,11 +1,6 @@
 package com.orizon.system.message;
 
 import com.orizon.system.message.application.ApplicationRunner;
-import com.orizon.system.message.domain.ports.services.MessageService;
-import com.orizon.system.message.domain.ports.services.UserService;
-import com.orizon.system.message.repositories.UserRepository;
-import com.orizon.system.message.services.MessageServiceImpl;
-import com.orizon.system.message.services.UserServiceImpl;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -10,4 +10,8 @@ public interface MessageService {
     void delete(Long messageId);
 
     void update(Long messageId, String newContent);
+
+    void findAllMessagesByReceiver(Long receiverId);
+
+    void findAllMessagesBySender(Long senderId);
 }

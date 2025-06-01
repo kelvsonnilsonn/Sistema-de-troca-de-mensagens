@@ -77,8 +77,9 @@ public class ApplicationRunner {
             System.out.println("\n=== MENU PRINCIPAL ===");
             System.out.println("1. Enviar mensagem");
             System.out.println("2. Ler mensagem");
-            System.out.println("3. Listar mensagens");
-            System.out.println("4. Sair");
+            System.out.println("3. Listar mensagens recebidas");
+            System.out.println("4. Listar mensagens enviadas");
+            System.out.println("5. Logout");
             System.out.print("Escolha uma opção: ");
 
             int choice = scan.nextInt();
@@ -87,10 +88,12 @@ public class ApplicationRunner {
             switch (choice) {
                 case 1 -> sendMessage();
                 case 2 -> readMessage();
-                case 3 -> listMessages();
-                case 4 -> {
+                case 3 -> listReceivedMessages();
+                case 4 -> listSentMessages();
+                case 5 -> {
                     running = false;
-                    System.out.println("Saindo...");
+                    AccountConfigurations.logout();
+                    start();
                 }
                 default -> System.out.println("Opção inválida!");
             }
@@ -119,8 +122,13 @@ public class ApplicationRunner {
         System.out.println("Conteúdo da mensagem: " + content);
     }
 
-    private void listMessages() {
+    private void listReceivedMessages() {
         System.out.println("\n=== LISTAR MENSAGENS ===");
-        System.out.println("Funcionalidade ainda não implementada.");
+        messageService.findAllMessagesByReceiver(AccountConfigurations.currentUser.getId());
+    }
+
+    private void listSentMessages() {
+        System.out.println("\n=== LISTAR MENSAGENS ENVIADAS ===");
+        messageService.findAllMessagesBySender(AccountConfigurations.currentUser.getId());
     }
 }
