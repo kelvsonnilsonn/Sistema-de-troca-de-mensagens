@@ -48,12 +48,16 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", username=" + username +
-                ", password=" + password +
-                ", sentMessages=" + sentMessages +
-                ", receivedMessages=" + receivedMessages +
-                '}';
+        StringBuilder sb = new StringBuilder();
+        sb.append("\n╔════════════════════════════════════════╗");
+        sb.append("\n║                USER PROFILE            ║");
+        sb.append("\n╠════════════════════════════════════════╣");
+        sb.append(String.format("\n║ %-20s: %-16s ║", "ID", id));
+        sb.append(String.format("\n║ %-20s: %-16s ║", "Username", username.getUsername()));
+        sb.append(String.format("\n║ %-20s: %-15s ║", "Password", "🔒🔒🔒🔒🔒"));
+        sb.append(String.format("\n║ %-20s: %-16s ║", "Sent Messages", sentMessages.size()));
+        sb.append(String.format("\n║ %-20s: %-16s ║", "Received Messages", receivedMessages.size()));
+        sb.append("\n╚════════════════════════════════════════╝");
+        return sb.toString();
     }
 }

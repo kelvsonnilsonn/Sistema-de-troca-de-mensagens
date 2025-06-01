@@ -10,6 +10,7 @@ import java.time.Instant;
 @Entity
 @NoArgsConstructor
 @Getter
+@Setter
 @Table(name = "messages")
 public class Message {
 
@@ -39,5 +40,21 @@ public class Message {
         this.receiver = receiver;
         this.createdAt = Instant.now();
         this.isRead = false;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("\n╔══════════════════════════════════════╗");
+        sb.append("\n║              MESSAGE                 ║");
+        sb.append("\n╠══════════════════════════════════════╣");
+        sb.append(String.format("\n║ %-36s ║", "ID: " + id));
+        sb.append(String.format("\n║ %-36s ║", "Content: '" + content + "'"));
+        sb.append(String.format("\n║ %-36s ║", "From: " + (sender != null ? sender.getUsername() : "Anônimo")));
+        sb.append(String.format("\n║ %-36s ║", "To: " + receiver.getUsername()));
+        sb.append(String.format("\n║ %-36s ║", "Sent at: " + createdAt));
+        sb.append(String.format("\n║ %-36s ║", "Status: " + (isRead ? "READ" : "UNREAD")));
+        sb.append("\n╚══════════════════════════════════════╝");
+        return sb.toString();
     }
 }
