@@ -11,6 +11,8 @@ import com.orizon.system.message.repositories.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -90,6 +92,26 @@ public class MessageServiceImpl implements MessageService {
         Message message = checkIfMessageExists(messageId);
         message.setContent(newContent);
         messageDAO.save(message);
+    }
+
+    @Override
+    public void findAllMessagesByReceiver(Long receiverId) {
+        List<Message> messages = messageDAO.findByReceiverId(receiverId).orElse(Collections.emptyList());
+        if (messages.isEmpty()) {
+            System.out.println("Você não possui mensagens recebidas.");
+            return;
+        }
+        messages.forEach(System.out::println);
+    }
+
+    @Override
+    public void findAllMessagesBySender(Long senderId) {
+        List<Message> messages = messageDAO.findBySenderId(senderId).orElse(Collections.emptyList());
+        if( messages.isEmpty()) {
+            System.out.println("Você não possui mensagens enviadas.");
+            return;
+        }
+        messages.forEach(System.out::println);
     }
 
     private Message checkIfMessageExists(Long id){

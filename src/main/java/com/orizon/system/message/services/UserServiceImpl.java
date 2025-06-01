@@ -46,6 +46,15 @@ public class UserServiceImpl implements UserService {
         userDAO.delete(user);
     }
 
+    /**
+     * Método responsável por realizar o login do usuário.
+     *
+     * @param username Refere-se ao nome do usuário.
+     * @param password Refere-se à senha do usuário.
+     *
+     * @throws InvalidIdentifierException Se o usuário não for encontrado ou a senha estiver incorreta.
+     * */
+
     @Override
     public User login(String username, String password) {
 
