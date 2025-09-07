@@ -1,4 +1,4 @@
-package com.orizon.system.message.exceptions.message;
+package com.orizon.system.message.exceptions;
 
 public class InvalidMessageReceiverException extends RuntimeException {
     public InvalidMessageReceiverException() {

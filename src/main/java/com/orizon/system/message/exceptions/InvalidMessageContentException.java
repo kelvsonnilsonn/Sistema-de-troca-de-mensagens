@@ -1,4 +1,4 @@
-package com.orizon.system.message.exceptions.message;
+package com.orizon.system.message.exceptions;
 
 public class InvalidMessageContentException extends RuntimeException {
     public InvalidMessageContentException() {
