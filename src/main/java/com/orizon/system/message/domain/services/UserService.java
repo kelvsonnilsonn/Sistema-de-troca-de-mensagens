@@ -1,18 +1,17 @@
-package com.orizon.system.message.services;
+package com.orizon.system.message.domain.services;
 
 import com.orizon.system.message.domain.model.User;
-import com.orizon.system.message.domain.ports.services.UserService;
 import com.orizon.system.message.exceptions.InvalidIdentifierException;
 import com.orizon.system.message.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserService {
 
     private final UserRepository userDAO;
 
-    public UserServiceImpl(@Autowired UserRepository userDAO) {
+    public UserService(@Autowired UserRepository userDAO) {
         this.userDAO = userDAO;
     }
 
@@ -26,7 +25,6 @@ public class UserServiceImpl implements UserService {
      * @throws IllegalArgumentException Se a senha for nula ou menor que 3 caracteres (Lançado pelo construtor da classe Password).
      * */
 
-    @Override
     public void create(String username, String password) {
         User user = new User(username, password);
         userDAO.save(user);
@@ -40,7 +38,6 @@ public class UserServiceImpl implements UserService {
      * @throws InvalidIdentifierException Se o 'id' não for encontrado (Lançado pelo método checkIfUserExists).
      * */
 
-    @Override
     public void delete(Long userId) {
         User user = checkIfUserExists(userId);
         userDAO.delete(user);
@@ -55,19 +52,16 @@ public class UserServiceImpl implements UserService {
      * @throws InvalidIdentifierException Se o usuário não for encontrado ou a senha estiver incorreta.
      * */
 
-    @Override
     public User login(String username, String password) {
 
         return userDAO.findByUsernameAndPassword(username, password)
                 .orElseThrow(() -> new InvalidIdentifierException("Usuário ou senha inválidos"));
     }
 
-    @Override
     public User findById(Long id) {
         return checkIfUserExists(id);
     }
 
-    @Override
     public void findAll(){
         userDAO.findAll().forEach(System.out::println);
     }

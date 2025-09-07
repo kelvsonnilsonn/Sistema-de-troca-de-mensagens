@@ -1,12 +1,11 @@
-package com.orizon.system.message.services;
+package com.orizon.system.message.domain.services;
 
 import com.orizon.system.message.config.AccountConfigurations;
 import com.orizon.system.message.domain.model.Message;
 import com.orizon.system.message.domain.model.User;
-import com.orizon.system.message.domain.ports.services.MessageService;
 import com.orizon.system.message.exceptions.InvalidIdentifierException;
-import com.orizon.system.message.exceptions.message.InvalidMessageContentException;
-import com.orizon.system.message.exceptions.message.InvalidMessageReceiverException;
+import com.orizon.system.message.exceptions.InvalidMessageContentException;
+import com.orizon.system.message.exceptions.InvalidMessageReceiverException;
 import com.orizon.system.message.repositories.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,11 +15,11 @@ import java.util.List;
 import java.util.Objects;
 
 @Service
-public class MessageServiceImpl implements MessageService {
+public class MessageService {
 
     private final MessageRepository messageDAO;
 
-    public MessageServiceImpl(@Autowired MessageRepository messageDAO) {
+    public MessageService(@Autowired MessageRepository messageDAO) {
         this.messageDAO = messageDAO;
     }
 
@@ -33,7 +32,6 @@ public class MessageServiceImpl implements MessageService {
      * @throws InvalidMessageContentException Lançado caso conteúdo seja nulo ou vazio.
      * */
 
-    @Override
     public void send(User receiver, String content) {
         if(content == null || content.isEmpty()){
             throw new InvalidMessageContentException();
@@ -52,7 +50,6 @@ public class MessageServiceImpl implements MessageService {
      * @throws InvalidMessageReceiverException Lançado caso o usuário atual não seja o recebedor da mensagem.
      * */
 
-    @Override
     public String receive(Long messageId) {
         Message message = checkIfMessageExists(messageId);
 
@@ -73,7 +70,6 @@ public class MessageServiceImpl implements MessageService {
      * @throws InvalidIdentifierException Se o 'id' não for encontrado (Lançado pelo método checkIfMessageExists).
      * */
 
-    @Override
     public void delete(Long messageId) {
         Message messageToDelete = checkIfMessageExists(messageId);
         messageDAO.delete(messageToDelete);
@@ -87,14 +83,12 @@ public class MessageServiceImpl implements MessageService {
      *
      * @throws InvalidIdentifierException Se o 'id' não for encontrado (Lançado pelo método checkIfMessageExists).
      * */
-    @Override
     public void update(Long messageId, String newContent) {
         Message message = checkIfMessageExists(messageId);
         message.setContent(newContent);
         messageDAO.save(message);
     }
 
-    @Override
     public void findAllMessagesByReceiver(Long receiverId) {
         List<Message> messages = messageDAO.findByReceiverId(receiverId).orElse(Collections.emptyList());
         if (messages.isEmpty()) {
@@ -104,7 +98,6 @@ public class MessageServiceImpl implements MessageService {
         messages.forEach(System.out::println);
     }
 
-    @Override
     public void findAllMessagesBySender(Long senderId) {
         List<Message> messages = messageDAO.findBySenderId(senderId).orElse(Collections.emptyList());
         if( messages.isEmpty()) {
