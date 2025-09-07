@@ -2,8 +2,8 @@ package com.orizon.system.message.application;
 
 import com.orizon.system.message.config.AccountConfigurations;
 import com.orizon.system.message.domain.model.User;
-import com.orizon.system.message.domain.ports.services.MessageService;
-import com.orizon.system.message.domain.ports.services.UserService;
+import com.orizon.system.message.domain.services.MessageService;
+import com.orizon.system.message.domain.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -32,7 +32,7 @@ public class ApplicationRunner {
             System.out.print("Escolha uma opção: ");
 
             int initialChoice = scan.nextInt();
-            scan.nextLine(); // Limpar buffer
+            scan.nextLine();
 
             switch (initialChoice) {
                 case 1 -> {
@@ -83,7 +83,7 @@ public class ApplicationRunner {
             System.out.print("Escolha uma opção: ");
 
             int choice = scan.nextInt();
-            scan.nextLine(); // Limpar buffer
+            scan.nextLine();
 
             switch (choice) {
                 case 1 -> sendMessage();
@@ -116,7 +116,7 @@ public class ApplicationRunner {
         System.out.println("\n=== LER MENSAGEM ===");
         System.out.print("ID da mensagem: ");
         Long messageId = scan.nextLong();
-        scan.nextLine(); // Limpar buffer
+        scan.nextLine();
 
         String content = messageService.receive(messageId);
         System.out.println("Conteúdo da mensagem: " + content);
