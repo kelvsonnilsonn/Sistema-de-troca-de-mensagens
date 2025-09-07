@@ -49,7 +49,7 @@ public class ApplicationRunner {
                 }
                 case 2 -> registerNewUser();
                 case 0 -> {
-                    return;
+                    System.exit(1);
                 }
                 default -> System.out.println("Opção inválida!");
             }
