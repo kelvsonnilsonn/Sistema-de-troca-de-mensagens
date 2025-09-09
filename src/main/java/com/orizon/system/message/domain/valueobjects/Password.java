@@ -22,7 +22,7 @@ public class Password {
 
     private void validate(String pass) {
         if (pass == null || pass.isEmpty()) {
-            throw new IllegalArgumentException("Nome de usuário não pode ser nulo ou vazio");
+            throw new IllegalArgumentException("A senha não pode ser nulo ou vazio");
         }
         if (!pattern.matcher(pass).matches()) {
             throw new IllegalArgumentException("A senha não segue o padrão: \n" +
