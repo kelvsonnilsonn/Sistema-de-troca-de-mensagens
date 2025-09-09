@@ -21,6 +21,9 @@ public class Password {
     }
 
     private void validate(String pass) {
+        if (pass == null || pass.isEmpty()) {
+            throw new IllegalArgumentException("Nome de usuário não pode ser nulo ou vazio");
+        }
         if (!pattern.matcher(pass).matches()) {
             throw new IllegalArgumentException("A senha não segue o padrão: \n" +
                     "Começar com uma letra maiúscula e ter tamanho de pelo menos 3 caracteres, podendo conter letras e números");
