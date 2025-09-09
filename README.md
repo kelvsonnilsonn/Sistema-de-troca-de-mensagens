@@ -1,6 +1,6 @@
 # 🗂️ Message Application
 
-Um sistema de troca de mensagens entre usuários desenvolvido em Java com Spring Boot, apresentando uma interface via linha de comando (CLI).
+Um sistema de troca de mensagens entre usuários desenvolvido em Java com Spring Framework, apresentando uma interface via linha de comando (CLI).
 
 ## ✨ Funcionalidades
 
